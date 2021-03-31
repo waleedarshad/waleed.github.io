@@ -64,6 +64,34 @@
         $(this).removeClass("floating-label-form-group-with-focus");
       });
     });
+
+    $('.contact1-form').on('submit',function(e){
+      //optional validation code here
+
+      e.preventDefault();
+    
+      $.ajax({
+          url: "https://script.google.com/macros/s/AKfycbwxB29jJXb1ePJPGcKXML80rvqVroXfRvLz0vMEZNGHHasLnjQ-EUFHaFi_WAAREveIww/exec",
+          method: "POST",
+          dataType: "json",
+          data: $(".contact1-form").serialize(),
+          success: function(response) {
+              
+              if(response.result == "success") {
+                  $('.contact1-form')[0].reset();
+                  alert('Thank you for contacting me.');
+                  return true;
+              }
+              else {
+                  alert("Something went wrong. Please try again.")
+              }
+          },
+          error: function() {
+              
+              alert("Something went wrong. Please try again.")
+          }
+      })
+  });
   
   })(jQuery); // End of use strict
   
